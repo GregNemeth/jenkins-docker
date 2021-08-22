@@ -12,7 +12,6 @@ services:
     build: ./jenkins-master
     ports:
      - "50000:50000"
-     - "8080:8080"
     volumes:
      - jenkins-log:/var/log/jenkins
      - jenkins-data:/var/jenkins_home
@@ -25,3 +24,15 @@ services:
      - "80:80"
     networks:
      - jenkins-net
+
+  slave:
+    build: ./jenkins-slave
+
+  proxy:
+    build: ./docker-proxy
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      jenkins-net:
+        aliases:
+         - proxy1
