@@ -9,7 +9,7 @@ networks:
 
 services:
   master:
-    build: ./jenkins-master
+    build: ./jenkins-master/master-deb
     ports:
      - "50000:50000"
     volumes:
